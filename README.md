@@ -21,10 +21,15 @@ A responsive web application for managing cleaning service appointments, develop
  ## Project Structure 
  agenda-limpeza/ 
  ├── index.html 
+ 
  ├── css/ 
+ 
  │ └── style.css 
+ 
  ├── js/ 
+ 
  │ └── app.js
+ 
  └── README.md 
  
 ## Status 
