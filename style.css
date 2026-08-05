@@ -48,3 +48,21 @@ button:hover {
     border: 1px solid var(--borda);
     box-shadow: 0 8px 24px rgba(98, 32, 183, 0.08);
 }
+.champ {
+    margin-bottom: 16px;
+}
+
+.champ label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.champ input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}

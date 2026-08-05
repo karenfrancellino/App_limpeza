@@ -4,6 +4,7 @@ const calendrier = document.getElementById("calendrier");
 botao.addEventListener("click", () =>{
     const nome = prompt("Nom du client :");
     const hora = prompt("Heure du service :");
+    const hora = document.getElementById("heure").value;
 
     if (!nome || !hora) {
         return;
@@ -19,5 +20,6 @@ botao.addEventListener("click", () =>{
     `;
 
     calendrier.appendChild(evento);
+    console.log(hora);
     
 });
