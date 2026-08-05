@@ -1,6 +1,10 @@
 const jours = document.querySelectorAll(".jour"); 
-const modal = document.getElementById("modal"); 
+const modalRendezvous = document.getElementById("modal-rendezvous"); 
 const save = document.getElementById("save"); 
+
+const modalClient = document.getElementById("modal-client"); 
+const btnClientNouveau = document.getElementById("btn-client-nouveau"); 
+const saveClient = document.getElementById("save-client");
 
 let jourActif = null; 
 
@@ -8,9 +12,16 @@ let jourActif = null;
 jours.forEach(jour => { 
     jour.addEventListener("click", () => { 
         jourActif = jour;
-        modal.classList.remove("hidden"); 
+        modalRendezvous.classList.remove("hidden");
     }); 
 }); 
+
+// Abrir modal de cliente 
+btnClientNouveau.addEventListener("click", () => { 
+    modalClient.classList.remove("hidden"); 
+});
+
+
 // Salvar evento 
 save.addEventListener("click", () => { 
     
@@ -38,5 +49,15 @@ save.addEventListener("click", () => {
         
         jourActif.appendChild(evento); 
 
-        modal.classList.add("hidden"); 
+        modalRendezvous.classList.add("hidden"); 
+    });
+
+    saveClient.addEventListener("click", () => { 
+        const nome = document.getElementById("client-nom").value; 
+        if (!nome) return; 
+        const selectClient = document.getElementById("client"); 
+        const option = document.createElement("option"); 
+        option.textContent = nome; 
+        selectClient.appendChild(option); 
+        modalClient.classList.add("hidden"); 
     });

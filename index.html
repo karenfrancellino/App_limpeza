@@ -12,6 +12,11 @@
 
     <h1>Planning Nettoyage</h1>
 
+    <div class="actions"> 
+        <button id="btn-client-nouveau">👤 Ajouter un client</button> 
+        <button id="btn-employe-nouveau">👩 Ajouter une employée</button> 
+    </div>
+
     <div class="calendrier" id="calendrier">
         <div class="jour">
             <div class="date">3 mai</div>
@@ -26,8 +31,8 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal hidden" id="modal">
+    <!-- Modal agendamento-->
+    <div class="modal hidden" id="modal-rendezvous">
         <div class="modal-content">
 
             <h2>Nouveau rendez-vous</h2>
@@ -67,6 +72,36 @@
 
         </div>
     </div>
+
+<!-- Modal cliente --> 
+ <div class="modal hidden" id="modal-client"> 
+    <div class="modal-content"> 
+
+        <h2>Nouveau client</h2> 
+        
+        <div class="champ"> 
+            <label>Nom</label> 
+            <input type="text" id="client-nom"> 
+        </div> 
+        
+        <div class="champ"> 
+            <label>Téléphone</label> 
+            <input type="text" id="client-tel"> 
+        </div> 
+        
+        <div class="champ"> 
+            <label>Adresse</label> 
+            <input type="text" id="client-adresse"> 
+        </div> 
+        
+        <div class="champ"> 
+            <label>Informations importantes</label> 
+            <textarea id="client-info"></textarea> 
+        </div> 
+    
+        <button id="save-client">Enregistrer le client</button> 
+    </div> 
+</div>
 
     <script src="app.js"></script>
 </body>

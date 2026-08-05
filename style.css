@@ -39,19 +39,6 @@ button:hover {
     background: var(--roxo-hover);
 }
 
-.calendrier {
-    background: var(--branco);
-    border-radius: 20px;
-    min-height: 420px;
-    margin-top: 24px;
-    padding: 24px;
-    border: 1px solid var(--borda);
-    box-shadow: 0 8px 24px rgba(98, 32, 183, 0.08);
-}
-.champ {
-    margin-bottom: 16px;
-}
-
 .champ label {
     display: block;
     margin-bottom: 6px;
@@ -66,14 +53,6 @@ button:hover {
     font-size: 16px;
     box-sizing: border-box;
 }
-.evento {
-    background: #EDE9FE;
-    border-left: 6px solid #A855F7;
-    padding: 16px;
-    border-radius: 12px;
-    margin-top: 16px;
-    line-height: 1.6;
-}
 
 .evento strong {
     color: #1F2937;
@@ -81,9 +60,16 @@ button:hover {
 }
 
 .calendrier { 
+    background: var(--branco); 
+    border-radius: 20px; 
+    padding: 24px; 
+    border: 1px solid var(--borda); 
+    box-shadow: 0 8px 24px rgba(98, 32, 183, 0.08); 
+
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
-    gap: 16px; margin-top: 24px; 
+    gap: 16px; 
+    margin-top: 24px; 
 }
 
 .jour { 
@@ -107,6 +93,7 @@ button:hover {
     border-radius: 10px; 
     margin-top: 10px; 
     font-size: 14px; 
+    line-height: 1.5;
 }
 
 .modal { 
@@ -154,4 +141,16 @@ button:hover {
     .champ textarea { 
         min-height: 90px; 
         resize: vertical; 
+    }
+
+    .actions { 
+        display: flex; 
+        gap: 12px; 
+        margin-bottom: 20px; 
+        flex-wrap: wrap; 
+    }
+    
+    .actions button { 
+        flex: 1; 
+        min-width: 180px; 
     }
