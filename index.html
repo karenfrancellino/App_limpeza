@@ -9,19 +9,63 @@
 </head>
 
 <body>
+
     <h1>Planning Nettoyage</h1>
 
-    <button id="btn-client">Ajouter un client</button>
+    <div class="calendrier" id="calendrier">
+        <div class="jour">
+            <div class="date">3 mai</div>
+        </div>
 
-    <div class="champ">
-         <label for="heure">Heure du service</label> 
-         <input type="time" id="heure"> 
+        <div class="jour">
+            <div class="date">4 mai</div>
+        </div>
+
+        <div class="jour">
+            <div class="date">5 mai</div>
+        </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal hidden" id="modal">
+        <div class="modal-content">
 
+            <h2>Nouveau rendez-vous</h2>
 
-    <div class="calendrier" id="calendrier">
-        <h2>Calendrier</h2>
+            <div class="champ">
+                <label>Client</label>
+                <select id="client">
+                    <option>Marie Dupont</option>
+                    <option>Claire Martin</option>
+                </select>
+            </div>
+
+            <div class="champ">
+                <label>Heure</label>
+                <input type="time" id="heure">
+            </div>
+
+            <div class="champ">
+                <label>Durée (h)</label>
+                <input type="number" id="duree" min="1" max="12">
+            </div>
+
+            <div class="champ">
+                <label>Employée</label>
+                <select id="employe">
+                    <option value="#A855F7">Sophie</option>
+                    <option value="#EF4444">Emma</option>
+                </select>
+            </div>
+
+            <div class="champ">
+                <label>Observations</label>
+                <textarea id="obs"></textarea>
+            </div>
+
+            <button id="save">Ajouter au calendrier</button>
+
+        </div>
     </div>
 
     <script src="app.js"></script>

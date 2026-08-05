@@ -66,3 +66,92 @@ button:hover {
     font-size: 16px;
     box-sizing: border-box;
 }
+.evento {
+    background: #EDE9FE;
+    border-left: 6px solid #A855F7;
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 16px;
+    line-height: 1.6;
+}
+
+.evento strong {
+    color: #1F2937;
+    font-size: 18px;
+}
+
+.calendrier { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 16px; margin-top: 24px; 
+}
+
+.jour { 
+    background: white; 
+    border-radius: 16px; 
+    min-height: 180px; 
+    padding: 16px; 
+    border: 1px solid var(--borda); 
+    cursor: pointer; 
+}
+
+.date { 
+    font-weight: 700; 
+    margin-bottom: 12px; 
+}
+
+.evento { 
+    background: #F3E8FF; 
+    border-left: 5px solid #A855F7; 
+    padding: 10px; 
+    border-radius: 10px; 
+    margin-top: 10px; 
+    font-size: 14px; 
+}
+
+.modal { 
+    position: fixed; 
+    inset: 0; 
+    background: rgba(0,0,0,0.45); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.hidden { 
+    display: none; 
+}
+
+.modal-content {
+     background: white; 
+     width: 90%; 
+     max-width: 420px; 
+     border-radius: 20px; 
+     padding: 24px; 
+    }
+    
+    .champ { 
+        margin-bottom: 16px; 
+    }
+    
+    .champ label { 
+        display: block; 
+        margin-bottom: 6px; 
+        font-weight: 600; 
+    }
+    
+    .champ input, 
+    .champ select, 
+    .champ textarea { 
+        width: 100%; 
+        padding: 12px; 
+        border: 1px solid var(--borda); 
+        border-radius: 10px; 
+        font-size: 16px; 
+        box-sizing: border-box; 
+    }
+    
+    .champ textarea { 
+        min-height: 90px; 
+        resize: vertical; 
+    }
