@@ -154,3 +154,15 @@ button:hover {
         flex: 1; 
         min-width: 180px; 
     }
+
+    .evento-resumo { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 4px; 
+    } 
+    
+    .evento .hora { 
+        color: var(--texto-suave); 
+        font-size: 13px; 
+        font-weight: 500; 
+    }

@@ -29,27 +29,48 @@ save.addEventListener("click", () => {
     const heure = document.getElementById("heure").value; 
     const duree = document.getElementById("duree").value; 
     const obs = document.getElementById("obs").value; 
+    
     const selectEmploye = document.getElementById("employe"); 
-    const employe = selectEmploye.options[selectEmploye.selectedIndex].text; 
+    const employe = 
+    selectEmploye.options[selectEmploye.selectedIndex].text; 
     const cor = selectEmploye.value; 
     
     if (!heure || !duree) return; 
     
+    // Objeto do agendamento (estrutura profissional) 
+    const rendezvous = { 
+        client, 
+        heure, 
+        duree, 
+        employe, 
+        cor, 
+        obs 
+    };
+    
+    // Cria o cartão visual do calendário 
     const evento = document.createElement("div"); 
     evento.className = "evento"; 
     
-    evento.style.borderLeftColor = cor; 
+    // Cor da funcionária 
+    evento.style.borderLeftColor = rendezvous.cor; 
+    
+    // CALENDÁRIO LIMPO 
     evento.innerHTML = ` 
-        <strong>${client}</strong> 
-        <br>👩 ${employe} 
-        <br>🕒 ${heure} 
-        <br>⏱ ${duree}h 
-        <br>📝 ${obs} 
-        `; 
-        
-        jourActif.appendChild(evento); 
+    <div class="evento-resumo"> 
+    <strong>${rendezvous.client}</strong> 
+    <div class="hora"> 🕒 ${rendezvous.heure} • ${rendezvous.duree}h 
+    </div> 
+    </div> 
+    `; 
 
-        modalRendezvous.classList.add("hidden"); 
+    // Guarda os dados completos no elemento
+evento.dataset.rendezvous = JSON.stringify(rendezvous);
+
+// Adiciona ao dia selecionado
+jourActif.appendChild(evento);
+
+// Fecha o modal
+modalRendezvous.classList.add("hidden");
     });
 
     saveClient.addEventListener("click", () => { 
