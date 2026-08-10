@@ -54,9 +54,11 @@ button:hover {
     box-sizing: border-box;
 }
 
-.evento strong {
-    color: #1F2937;
-    font-size: 18px;
+.evento strong { 
+    color: #1F2937; 
+    font-size: 16px; 
+    display: block; 
+    margin-bottom: 4px; 
 }
 
 .calendrier { 

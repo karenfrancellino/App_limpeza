@@ -38,14 +38,17 @@ save.addEventListener("click", () => {
     if (!heure || !duree) return; 
     
     // Objeto do agendamento (estrutura profissional) 
-    const rendezvous = { 
-        client, 
-        heure, 
-        duree, 
-        employe, 
-        cor, 
-        obs 
-    };
+   const date = jourActif.querySelector(".date").textContent; 
+   
+   const rendezvous = { 
+    client, 
+    date, 
+    heure, 
+    duree, 
+    employe, 
+    cor, 
+    obs, 
+};
     
     // Cria o cartão visual do calendário 
     const evento = document.createElement("div"); 
@@ -67,6 +70,29 @@ save.addEventListener("click", () => {
 
     // Guarda os dados completos no elemento
 evento.dataset.rendezvous = JSON.stringify(rendezvous);
+
+// Adiciona ou google agenda
+evento.addEventListener("click", (e) => { 
+    e.stopPropagation(); 
+    
+    const data = JSON.parse(evento.dataset.rendezvous); 
+    
+    const titre = encodeURIComponent( 
+        `Nettoyage - ${data.client}` 
+    ); 
+    
+    const details = encodeURIComponent( 
+        `Employée: ${data.employe} 
+        Observations: ${data.obs || "Aucune"}` ); 
+        
+// Exemplo simples usando 2026 
+    const dateGoogle = "20260503"; 
+    const heureDebut = data.heure.replace(":", "") + "00"; 
+
+    const url = `https://calendar.google.com/calendar/render?
+    action=TEMPLATE&text=${titre}&dates=${dateGoogle}T${heureDebut}/${dateGoogle}T${heureDebut}&details=${details}`; 
+window.open(url, "_blank"); 
+});
 
 // Adiciona ao dia selecionado
 jourActif.appendChild(evento);
