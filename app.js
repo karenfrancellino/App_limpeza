@@ -56,12 +56,14 @@ save.addEventListener("click", () => {
     
     // CALENDÁRIO LIMPO 
     evento.innerHTML = ` 
-    <div class="evento-resumo"> 
-    <strong>${rendezvous.client}</strong> 
-    <div class="hora"> 🕒 ${rendezvous.heure} • ${rendezvous.duree}h 
+     <div class="evento-resumo"> 
+        <strong>${rendezvous.client}</strong> 
+        <div class="hora"> 
+            ${rendezvous.employe} •  ${rendezvous.heure} • 
+        ${rendezvous.duree}h 
     </div> 
     </div> 
-    `; 
+    `;
 
     // Guarda os dados completos no elemento
 evento.dataset.rendezvous = JSON.stringify(rendezvous);
