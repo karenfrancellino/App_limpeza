@@ -5,6 +5,14 @@ const save = document.getElementById("save");
 const modalClient = document.getElementById("modal-client"); 
 const btnClientNouveau = document.getElementById("btn-client-nouveau"); 
 const saveClient = document.getElementById("save-client");
+const closeButtons = document.querySelectorAll(".close-modal");
+
+closeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const modal = button.closest(".modal");
+        modal.classList.add("hidden");
+    });
+});
 
 let jourActif = null; 
 

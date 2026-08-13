@@ -168,3 +168,26 @@ button:hover {
         font-size: 13px; 
         font-weight: 500; 
     }
+
+    .close-modal {
+    background: none;
+    color: var(--texto-suave);
+    border: none;
+    font-size: 28px;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 0;
+    width: auto;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+}
+
+.close-modal:hover {
+    background: none;
+    color: var(--texto);
+}
+
+.modal-content {
+    position: relative;
+}
