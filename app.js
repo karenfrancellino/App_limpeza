@@ -77,43 +77,45 @@ evento.addEventListener("click", (e) => {
     
     const data = JSON.parse(evento.dataset.rendezvous); 
     
-    const titre = encodeURIComponent( 
-        `Nettoyage - ${data.client}` 
-    ); 
+    // Pega o dia clicado (ex.: "3 mai" -> 3) 
+    const jour = parseInt(data.date); 
     
+    // Hora inicial 
+    const [h, m] = data.heure.split(":").map(Number); 
+    
+    // Duração em horas 
+    const duree = Number(data.duree); 
+    
+    // Data de início 
+    const debut = new Date(2026, 4, jour, h, m); 
+    
+    // Data de fim 
+    const fin = new Date(debut); 
+    fin.setHours(fin.getHours() + duree); 
+    
+    // Formato aceito pelo Google Calendar 
+    function formatGoogle(d) { 
+        return d.toISOString().replace(/[-:]/g, "").split(".")
+        [0] + "Z"; 
+    } 
+    
+    const dateDebut = formatGoogle(debut); 
+    const dateFin = formatGoogle(fin); 
+    
+    const titre = encodeURIComponent(`Nettoyage - 
+        ${data.client}`); 
+        
     const details = encodeURIComponent( 
         `Employée: ${data.employe} 
-        Observations: ${data.obs || "Aucune"}` ); 
-        
-// Converter hora de início 
-const [h, m] = data.heure.split(":").map(Number); 
+    Observations: ${data.obs || "Aucune"}` 
+); 
 
-// Duração em horas
-const duree = Number(data.duree); 
-
-// Criar data de início 
-const debut = new Date(2026, 4, 3, h, m); 
-
-// Criar data de fim 
-const fin = new Date(debut); 
-fin.setHours(fin.getHours() + duree); 
-
-// Função para formatar 
-function formatGoogleDate(d) { 
-    const yyyy = d.getFullYear(); 
-    const mm = String(d.getMonth() + 1).padStart(2, "0"); 
-    const dd = String(d.getDate()).padStart(2, "0"); 
-    const hh = String(d.getHours()).padStart(2, "0"); 
-    const min = String(d.getMinutes()).padStart(2, "0"); 
+const url = `https://calendar.google.com/calendar/render?action=TEMPLATE` +
+    `&text=${titre}` + 
+    `&dates=${dateDebut}/${dateFin}` + 
+    `&details=${details}`; 
     
-    return `${yyyy}${mm}${dd}T${hh}${min}00`; 
-} 
-const dateDebut = formatGoogleDate(debut); 
-const dateFin = formatGoogleDate(fin);
-
-    const url = `https://calendar.google.com/calendar/render?
-    action=TEMPLATE&text=${titre}&dates=${dateDebut}/${dateFin}&details=${details}`;
-window.open(url, "_blank"); 
+    window.open(url, "_blank"); 
 });
 
 // Adiciona ao dia selecionado
