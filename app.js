@@ -40,10 +40,20 @@ save.addEventListener("click", () => {
     // Objeto do agendamento (estrutura profissional) 
    const date = jourActif.querySelector(".date").textContent; 
    
+   // Calcula hora final 
+   const [h, m] = heure.split(":").map(Number); 
+   const fin = new Date(2026, 0, 1, h, m); 
+   fin.setHours(fin.getHours() + Number(duree)); 
+   
+   const heureFin = 
+   String(fin.getHours()).padStart(2, "0") + ":" + 
+   String(fin.getMinutes()).padStart(2, "0"); 
+   
    const rendezvous = { 
     client, 
     date, 
     heure, 
+    heureFin, 
     duree, 
     employe, 
     cor, 
