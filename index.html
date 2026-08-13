@@ -9,7 +9,7 @@
 </head>
 
 <body>
-
+    <!-- Calendario -->
     <h1>Planning Nettoyage</h1>
 
     <div class="actions"> 
@@ -29,6 +29,11 @@
             <div class="date">5 mai</div>
         </div>
     </div>
+
+<section class="heures-employees">
+    <h2>Heures des employées</h2>
+    <div id="compteur-heures"></div>
+</section>
 
     <!-- Modal agendamento-->
     <div class="modal hidden" id="modal-rendezvous">
@@ -74,23 +79,38 @@
         </div>
     </div>
 
-<!-- Modal cliente --> 
- <div class="modal hidden" id="modal-client"> 
-    <div class="modal-content"> 
+<!-- Modal client -->
+<div class="modal hidden" id="modal-client">
+    <div class="modal-content">
 
-         <button class="close-modal" type="button">×</button>
-         
-        <h2>Nouveau client</h2> 
-        
-        <div class="champ"> 
-            <label>Nom</label> 
-            <input type="text" id="client-nom"> 
-        </div> 
-        
-        <div class="champ"> 
-            <label>Téléphone</label> 
-            <input type="text" id="client-tel"> 
-        </div> 
+        <button class="close-modal" type="button">×</button>
+
+        <h2>Nouveau client</h2>
+
+        <div class="champ">
+            <label>Nom</label>
+            <input type="text" id="client-nom">
+        </div>
+
+        <div class="champ">
+            <label>Téléphone</label>
+            <input type="text" id="client-tel">
+        </div>
+
+        <div class="champ">
+            <label>Adresse</label>
+            <input type="text" id="client-adresse">
+        </div>
+
+        <div class="champ">
+            <label>Informations importantes</label>
+            <textarea id="client-info"></textarea>
+        </div>
+
+        <button id="save-client">Enregistrer le client</button>
+
+    </div>
+</div>
         
         <div class="champ"> 
             <label>Adresse</label> 

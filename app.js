@@ -38,6 +38,13 @@ jours.forEach(jour => {
 
 // Abrir modal de cliente
 btnClientNouveau.addEventListener("click", () => {
+
+    // Limpa o formulário para novo cliente
+    document.getElementById("client-nom").value = "";
+    document.getElementById("client-tel").value = "";
+    document.getElementById("client-adresse").value = "";
+    document.getElementById("client-info").value = "";
+
     modalClient.classList.remove("hidden");
 });
 
@@ -197,12 +204,22 @@ document.getElementById("client").selectedIndex = 0;
 modalRendezvous.classList.add("hidden");
     });
 
-    saveClient.addEventListener("click", () => { 
-        const nome = document.getElementById("client-nom").value; 
-        if (!nome) return; 
-        const selectClient = document.getElementById("client"); 
-        const option = document.createElement("option"); 
-        option.textContent = nome; 
-        selectClient.appendChild(option); 
-        modalClient.classList.add("hidden"); 
-    });
+   saveClient.addEventListener("click", () => { 
+    const nome = document.getElementById("client-nom").value; 
+
+    if (!nome) return; 
+
+    const selectClient = document.getElementById("client"); 
+
+    const option = document.createElement("option"); 
+    option.textContent = nome; 
+    selectClient.appendChild(option); 
+
+    // Limpa o formulário para o próximo cliente
+    document.getElementById("client-nom").value = "";
+    document.getElementById("client-tel").value = "";
+    document.getElementById("client-adresse").value = "";
+    document.getElementById("client-info").value = "";
+
+    modalClient.classList.add("hidden"); 
+});
