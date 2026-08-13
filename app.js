@@ -71,9 +71,9 @@ save.addEventListener("click", () => {
     // Objeto do agendamento (estrutura profissional) 
    const date = jourActif.querySelector(".date").textContent; 
    
-   // Calcula hora final 
-   const [h, m] = heure.split(":").map(Number); 
-   const fin = new Date(2026, 0, 1, h, m); 
+// Calcula hora final 
+const [hFin, mFin] = heure.split(":").map(Number); 
+const fin = new Date(2026, 0, 1, hFin, mFin);
    fin.setHours(fin.getHours() + Number(duree)); 
    
    const heureFin = 
