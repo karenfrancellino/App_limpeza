@@ -9,11 +9,15 @@ const saveClient = document.getElementById("save-client");
 let jourActif = null; 
 
 // Abrir modal ao clicar no dia 
-jours.forEach(jour => { 
-    jour.addEventListener("click", () => { 
-        jourActif = jour;
-        modalRendezvous.classList.remove("hidden");
-    }); 
+jour.addEventListener("click", () => { 
+    jourActif = jour; 
+    
+    // Limpa campos para novo agendamento 
+    document.getElementById("heure").value = ""; 
+    document.getElementById("duree").value = ""; 
+    document.getElementById("obs").value = ""; 
+    
+    modalRendezvous.classList.remove("hidden"); 
 }); 
 
 // Abrir modal de cliente 
@@ -162,7 +166,18 @@ const url = `https://calendar.google.com/calendar/render?action=TEMPLATE` +
 // Adiciona ao dia selecionado
 jourActif.appendChild(evento);
 
-// Fecha o modal
+// Limpa o formulário 
+document.getElementById("heure").value = ""; 
+document.getElementById("duree").value = ""; 
+document.getElementById("obs").value = ""; 
+
+// Volta para a primeira funcionária 
+document.getElementById("employe").selectedIndex = 0; 
+
+// Volta para o primeiro cliente
+document.getElementById("client").selectedIndex = 0;
+
+// Fecha o modal 
 modalRendezvous.classList.add("hidden");
     });
 
