@@ -36,6 +36,37 @@ save.addEventListener("click", () => {
     const cor = selectEmploye.value; 
     
     if (!heure || !duree) return; 
+
+    // Calcula hora final do novo agendamento 
+    const [h, m] = heure.split(":").map(Number); 
+    const debutNouveau = h * 60 + m; 
+    const finNouveau = debutNouveau + Number(duree) * 60; 
+    
+    // Verifica conflitos no mesmo dia 
+    const eventosDoDia = jourActif.querySelectorAll(".evento"); 
+    for (const ev of eventosDoDia) { 
+        const rdv = JSON.parse(ev.dataset.rendezvous); 
+        
+    // Só compara a mesma funcionária 
+    if (rdv.employe !== employe) continue; 
+    
+    const [hIni, mIni] = rdv.heure.split(":").map(Number); 
+    const [hFim, mFim] = rdv.heureFin.split(":").map(Number); 
+    
+    const debutExistente = hIni * 60 + mIni; 
+    const finExistente = hFim * 60 + mFim; 
+    
+    // Verifica sobreposição 
+    const conflit = 
+        debutNouveau < finExistente && 
+        finNouveau > debutExistente; 
+        
+        if (conflit) { 
+            alert( `Conflit d'horaire pour ${employe} ` + 
+                `${rdv.heure} - ${rdv.heureFin}` 
+            ); return; 
+        } 
+    } 
     
     // Objeto do agendamento (estrutura profissional) 
    const date = jourActif.querySelector(".date").textContent; 
