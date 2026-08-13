@@ -85,12 +85,34 @@ evento.addEventListener("click", (e) => {
         `Employée: ${data.employe} 
         Observations: ${data.obs || "Aucune"}` ); 
         
-// Exemplo simples usando 2026 
-    const dateGoogle = "20260503"; 
-    const heureDebut = data.heure.replace(":", "") + "00"; 
+// Converter hora de início 
+const [h, m] = data.heure.split(":").map(Number); 
+
+// Duração em horas
+const duree = Number(data.duree); 
+
+// Criar data de início 
+const debut = new Date(2026, 4, 3, h, m); 
+
+// Criar data de fim 
+const fin = new Date(debut); 
+fin.setHours(fin.getHours() + duree); 
+
+// Função para formatar 
+function formatGoogleDate(d) { 
+    const yyyy = d.getFullYear(); 
+    const mm = String(d.getMonth() + 1).padStart(2, "0"); 
+    const dd = String(d.getDate()).padStart(2, "0"); 
+    const hh = String(d.getHours()).padStart(2, "0"); 
+    const min = String(d.getMinutes()).padStart(2, "0"); 
+    
+    return `${yyyy}${mm}${dd}T${hh}${min}00`; 
+} 
+const dateDebut = formatGoogleDate(debut); 
+const dateFin = formatGoogleDate(fin);
 
     const url = `https://calendar.google.com/calendar/render?
-    action=TEMPLATE&text=${titre}&dates=${dateGoogle}T${heureDebut}/${dateGoogle}T${heureDebut}&details=${details}`; 
+    action=TEMPLATE&text=${titre}&dates=${dateDebut}/${dateFin}&details=${details}`;
 window.open(url, "_blank"); 
 });
 
