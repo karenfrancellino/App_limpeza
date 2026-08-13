@@ -8,21 +8,29 @@ const saveClient = document.getElementById("save-client");
 
 let jourActif = null; 
 
-// Abrir modal ao clicar no dia 
-jour.addEventListener("click", () => { 
-    jourActif = jour; 
-    
-    // Limpa campos para novo agendamento 
-    document.getElementById("heure").value = ""; 
-    document.getElementById("duree").value = ""; 
-    document.getElementById("obs").value = ""; 
-    
-    modalRendezvous.classList.remove("hidden"); 
+//Abrir modal ao clicar no dia 
+jours.forEach(jour => {
+    jour.addEventListener("click", () => {
+        jourActif = jour;
+
+        // Limpa campos para novo agendamento
+        document.getElementById("heure").value = "";
+        document.getElementById("duree").value = "";
+        document.getElementById("obs").value = "";
+
+        //Volta para a primeira funcionaria 
+        document.getElementById("employe").selectedIndex = 0;
+        
+        //Volta para a primeira cliente
+        document.getElementById("client").selectedIndex = 0;
+
+        modalRendezvous.classList.remove("hidden");
+    });
 }); 
 
-// Abrir modal de cliente 
-btnClientNouveau.addEventListener("click", () => { 
-    modalClient.classList.remove("hidden"); 
+// Abrir modal de cliente
+btnClientNouveau.addEventListener("click", () => {
+    modalClient.classList.remove("hidden");
 });
 
 
