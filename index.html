@@ -152,8 +152,57 @@
         
         <div class="champ"> 
             <label>Disponibilité</label> 
-            <textarea id="employe-dispo" placeholder="Ex: Lun-Ven 08:00-17:00 / Sam 09:00-13:00"></textarea> 
-        </div> 
+            <table class="dispo-table"> 
+                <tr> 
+                    <th>Jour</th> 
+                    <th>Matin</th> 
+                    <th>Après-midi</th> 
+                    <th>Soir</th> 
+                </tr> 
+                
+                <tr> 
+                    <td>Lun</td> 
+                    <td><input type="checkbox" id="lun-matin"></td> 
+                    <td><input type="checkbox" id="lun-apres"></td> 
+                    <td><input type="checkbox" id="lun-soir"></td> 
+                </tr> 
+                
+                <tr> 
+                    <td>Mar</td> 
+                    <td><input type="checkbox" id="mar-matin"></td> 
+                    <td><input type="checkbox" id="mar-apres"></td> 
+                    <td><input type="checkbox" id="mar-soir"></td> 
+                </tr> 
+                
+                <tr> 
+                    <td>Mer</td> 
+                    <td><input type="checkbox" id="mer-matin"></td> 
+                    <td><input type="checkbox" id="mer-apres"></td> 
+                    <td><input type="checkbox" id="mer-soir"></td> 
+                </tr> 
+                
+                <tr> 
+                    <td>Jeu</td> 
+                    <td><input type="checkbox" id="jeu-matin"></td> 
+                    <td><input type="checkbox" id="jeu-apres"></td> 
+                    <td><input type="checkbox" id="jeu-soir"></td> 
+                </tr> 
+                
+                <tr> 
+                    <td>Ven</td> 
+                    <td><input type="checkbox" id="ven-matin"></td> 
+                    <td><input type="checkbox" id="ven-apres"></td> 
+                    <td><input type="checkbox" id="ven-soir"></td> 
+                </tr> 
+                
+                <tr> 
+                    <td>Sam</td> 
+                    <td><input type="checkbox" id="sam-matin"></td> 
+                    <td><input type="checkbox" id="sam-apres"></td> 
+                    <td><input type="checkbox" id="sam-soir"></td> 
+                </tr> 
+            </table> 
+        </div>
         
         <button id="save-employe">Enregistrer l'employée</button> 
     </div> 

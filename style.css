@@ -114,12 +114,12 @@ button:hover {
 .modal-content { 
     background: white; 
     width: 90%; 
-    max-width: 420px; 
+    max-width: 520px; 
     max-height: 90vh;  
     overflow-y: auto; 
     border-radius: 20px; 
     padding: 24px; 
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
     
     .champ { 
@@ -213,4 +213,26 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.dispo-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    font-size: 14px; 
+} 
+
+.dispo-table th, 
+.dispo-table td { 
+    border: 1px solid var(--borda); 
+    padding: 8px; 
+    text-align: center; 
+} 
+
+.dispo-table th { 
+    background: #F9FAFB; 
+    font-weight: 600; 
+} 
+
+.dispo-table input[type="checkbox"] { 
+    transform: scale(1.1); 
 }
