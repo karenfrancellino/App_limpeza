@@ -4,6 +4,10 @@ const save = document.getElementById("save");
 
 const modalClient = document.getElementById("modal-client"); 
 const btnClientNouveau = document.getElementById("btn-client-nouveau"); 
+
+const modalEmploye = document.getElementById("modal-employe"); 
+const btnEmployeNouveau = document.getElementById("btn-employe-nouveau");
+
 const saveClient = document.getElementById("save-client");
 const closeButtons = document.querySelectorAll(".close-modal");
 
@@ -48,6 +52,10 @@ btnClientNouveau.addEventListener("click", () => {
     modalClient.classList.remove("hidden");
 });
 
+// Abrir modal de funcionaria 
+btnEmployeNouveau.addEventListener("click", () => { 
+    modalEmploye.classList.remove("hidden"); 
+});
 
 // Salvar evento 
 save.addEventListener("click", () => { 
