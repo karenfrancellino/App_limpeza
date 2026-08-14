@@ -136,14 +136,26 @@ const fin = new Date(2026, 0, 1, hFin, mFin);
     
     // CALENDÁRIO LIMPO 
     evento.innerHTML = ` 
-     <div class="evento-resumo"> 
-        <strong>${rendezvous.client}</strong> 
-        <div class="hora"> 
-            ${rendezvous.employe} •  ${rendezvous.heure} • 
-        ${rendezvous.duree}h 
+        <div class="evento-resumo"> 
+            <div class="evento-topo"> 
+                <strong>${rendezvous.client}</strong> 
+                <button class="delete-evento" type="button">🗑️</button> 
+             </div> 
+                
+            <div class="hora"> ${rendezvous.employe} • ${rendezvous.heure} • ${rendezvous.duree}h 
+        </div> 
     </div> 
-    </div> 
-    `;
+`;
+
+const deleteBtn = evento.querySelector(".delete-evento"); 
+
+deleteBtn.addEventListener("click", (e) => { 
+    e.stopPropagation(); 
+    
+    if (confirm("Supprimer ce rendez-vous ?")) { 
+        evento.remove(); atualizarContadorHoras(); 
+    } 
+});
 
     // Guarda os dados completos no elemento
 evento.dataset.rendezvous = JSON.stringify(rendezvous);

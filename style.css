@@ -236,3 +236,25 @@ button:hover {
 .dispo-table input[type="checkbox"] { 
     transform: scale(1.1); 
 }
+
+.evento-topo { 
+    display: flex; j
+    ustify-content: space-between; 
+    align-items: center; 
+    gap: 8px; 
+} 
+
+.delete-evento { 
+    background: none; 
+    border: none; 
+    color: #EF4444; 
+    font-size: 16px; 
+    cursor: pointer; 
+    padding: 0; 
+    width: auto; 
+} 
+
+.delete-evento:hover { 
+    background: none; 
+    transform: scale(1.1); 
+}
