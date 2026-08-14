@@ -9,6 +9,7 @@ const modalEmploye = document.getElementById("modal-employe");
 const btnEmployeNouveau = document.getElementById("btn-employe-nouveau");
 
 const saveClient = document.getElementById("save-client");
+const saveEmploye = document.getElementById("save-employe");
 const closeButtons = document.querySelectorAll(".close-modal");
 
 closeButtons.forEach(button => {
@@ -147,7 +148,7 @@ const fin = new Date(2026, 0, 1, hFin, mFin);
     // Guarda os dados completos no elemento
 evento.dataset.rendezvous = JSON.stringify(rendezvous);
 
-// Adiciona ou google agenda
+// Adiciona ao google agenda
 evento.addEventListener("click", (e) => { 
     e.stopPropagation(); 
     
@@ -215,24 +216,43 @@ document.getElementById("client").selectedIndex = 0;
 modalRendezvous.classList.add("hidden");
     });
 
-   saveClient.addEventListener("click", () => { 
-    const nome = document.getElementById("client-nom").value; 
+    saveClient.addEventListener("click", () => { 
+        const nome = document.getElementById("client-nom").value; 
+        
+        if (!nome) return; 
+        
+        const selectClient = document.getElementById("client"); 
+        
+        const option = document.createElement("option"); 
+        option.textContent = nome; 
+        selectClient.appendChild(option); 
+        
+        // Limpa o formulário para o próximo cliente 
+        document.getElementById("client-nom").value = ""; 
+        document.getElementById("client-tel").value = ""; 
+        document.getElementById("client-adresse").value = ""; 
+        document.getElementById("client-info").value = ""; 
+    
+        modalClient.classList.add("hidden"); 
+    });
+  
 
+    saveEmploye.addEventListener("click", () => { 
+    
+    const nome = document.getElementById("employe-nom").value; 
+    const cor = document.getElementById("employe-couleur").value; 
+    
     if (!nome) return; 
-
-    const selectClient = document.getElementById("client"); 
-
+    
+    const selectEmploye = document.getElementById("employe"); 
+    
     const option = document.createElement("option"); 
     option.textContent = nome; 
-    selectClient.appendChild(option); 
-
-    // Limpa o formulário para o próximo cliente
-    document.getElementById("client-nom").value = "";
-    document.getElementById("client-tel").value = "";
-    document.getElementById("client-adresse").value = "";
-    document.getElementById("client-info").value = "";
-
-    modalClient.classList.add("hidden"); 
+    option.value = cor; 
+    
+    selectEmploye.appendChild(option); 
+    
+    modalEmploye.classList.add("hidden"); 
 });
 
 function atualizarContadorHoras() { 
