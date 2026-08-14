@@ -189,6 +189,9 @@ const url = `https://calendar.google.com/calendar/render?action=TEMPLATE` +
 // Adiciona ao dia selecionado
 jourActif.appendChild(evento);
 
+// Atualiza o contador de horas
+atualizarContadorHoras();
+
 // Limpa o formulário 
 document.getElementById("heure").value = ""; 
 document.getElementById("duree").value = ""; 
@@ -223,3 +226,36 @@ modalRendezvous.classList.add("hidden");
 
     modalClient.classList.add("hidden"); 
 });
+
+function atualizarContadorHoras() { 
+    const eventos = document.querySelectorAll('.evento'); 
+    const totais = {}; 
+    
+    eventos.forEach(ev => { 
+        const rdv = JSON.parse(ev.dataset.rendezvous); 
+        
+        if (!totais[rdv.employe]) { 
+            totais[rdv.employe] = 0; 
+        } 
+        
+        totais[rdv.employe] += Number(rdv.duree); 
+    }); 
+    
+    const container = document.getElementById('compteur-heures'); 
+    
+    if (!container) return; 
+    
+    container.innerHTML = ''; 
+    
+    for (const nome in totais) { 
+        const linha = document.createElement('div'); 
+        linha.className = 'ligne-heures'; 
+        
+        linha.innerHTML = ` 
+            <span>${nome}</span> 
+            <strong>${totais[nome]}h</strong> 
+        `; 
+        
+        container.appendChild(linha); 
+    } 
+}
