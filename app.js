@@ -98,9 +98,13 @@ save.addEventListener("click", () => {
         finNouveau > debutExistente; 
         
         if (conflit) { 
-            alert( `Conflit d'horaire pour ${employe} ` + 
-                `${rdv.heure} - ${rdv.heureFin}` 
-            ); return; 
+            alert( `⚠️ CONFLIT D'HORAIRE\n\n` +
+        `Employée : ${employe}\n` +
+        `Horaire : ${rdv.heure} - ${rdv.heureFin}\n\n` +
+        `Cliente déjà planifiée : ${rdv.client}`  
+            ); 
+        
+            return; 
         } 
     } 
     
