@@ -78,6 +78,14 @@ save.addEventListener("click", () => {
     const debutNouveau = h * 60 + m; 
     const finNouveau = debutNouveau + Number(duree) * 60; 
     
+    const [hFinNouveau, mFinNouveau] = heure.split(":").map(Number);
+    const finNouveauDate = new Date(2026, 0, 1, hFinNouveau, mFinNouveau);
+    finNouveauDate.setHours(finNouveauDate.getHours() + Number(duree));
+
+    const heureFin = 
+        String(finNouveauDate.getHours()).padStart(2, "0") + ":" +
+        String(finNouveauDate.getMinutes()).padStart(2, "0");
+
     // Verifica conflitos no mesmo dia 
     const eventosDoDia = jourActif.querySelectorAll(".evento"); 
     for (const ev of eventosDoDia) { 
@@ -97,28 +105,34 @@ save.addEventListener("click", () => {
         debutNouveau < finExistente && 
         finNouveau > debutExistente; 
         
-        if (conflit) { 
-            alert( `⚠️ CONFLIT D'HORAIRE\n\n` +
-        `Employée : ${employe}\n` +
-        `Horaire : ${rdv.heure} - ${rdv.heureFin}\n\n` +
-        `Cliente déjà planifiée : ${rdv.client}`  
-            ); 
-        
-            return; 
-        } 
+       if (conflit) {
+
+    const remplacer = confirm(
+        `⚠️ CONFLIT D'HORAIRE\n\n` +
+
+        `AGENDAMENTO ATUAL\n` +
+        `Cliente : ${rdv.client}\n` +
+        `Horário : ${rdv.heure} - ${rdv.heureFin}\n\n` +
+
+        `NOVO AGENDAMENTO\n` +
+        `Cliente : ${client}\n` +
+        `Horário : ${heure} - ${heureFin}\n\n` +
+
+        `OK = Remplacer l'ancien rendez-vous\n` +
+        `Annuler = Conserver l'ancien rendez-vous`
+    );
+
+    if (remplacer) {
+        ev.remove();
+        atualizarContadorHoras();
+    } else {
+        return;
+    }
+}
     } 
     
     // Objeto do agendamento (estrutura profissional) 
    const date = jourActif.querySelector(".date").textContent; 
-   
-// Calcula hora final 
-const [hFin, mFin] = heure.split(":").map(Number); 
-const fin = new Date(2026, 0, 1, hFin, mFin);
-   fin.setHours(fin.getHours() + Number(duree)); 
-   
-   const heureFin = 
-   String(fin.getHours()).padStart(2, "0") + ":" + 
-   String(fin.getMinutes()).padStart(2, "0"); 
    
    const rendezvous = { 
     client, 
