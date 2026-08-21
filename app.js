@@ -9,7 +9,14 @@ const modalEmploye = document.getElementById("modal-employe");
 const btnEmployeNouveau = document.getElementById("btn-employe-nouveau");
 
 const saveClient = document.getElementById("save-client");
+
 const saveEmploye = document.getElementById("save-employe");
+
+const modalConflit = document.getElementById("modal-conflit");
+const conflitInfo = document.getElementById("conflit-info");
+const conflitRemplacer = document.getElementById("conflit-remplacer");
+const conflitConserver = document.getElementById("conflit-conserver");
+
 const closeButtons = document.querySelectorAll(".close-modal");
 
 closeButtons.forEach(button => {
