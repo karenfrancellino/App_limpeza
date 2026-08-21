@@ -259,3 +259,19 @@ button:hover {
 .delete-evento:hover { 
     transform: scale(1.15); 
 }
+
+.conflit-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.conflit-actions button {
+    width: 100%;
+}
+
+#conflit-info {
+    line-height: 1.6;
+    margin-top: 16px;
+}
