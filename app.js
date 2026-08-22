@@ -17,6 +17,9 @@ const conflitInfo = document.getElementById("conflit-info");
 const conflitRemplacer = document.getElementById("conflit-remplacer");
 const conflitConserver = document.getElementById("conflit-conserver");
 
+let rendezvousEnConflit = null;
+let evenementEnConflit = null;
+
 const closeButtons = document.querySelectorAll(".close-modal");
 
 closeButtons.forEach(button => {
@@ -111,32 +114,36 @@ save.addEventListener("click", () => {
     const conflit = 
         debutNouveau < finExistente && 
         finNouveau > debutExistente; 
+
+        conflitInfo.innerHTML = `
+    <p><strong>Agendamento actuel</strong></p>
+    <p>Client : ${rdv.client}</p>
+    <p>Horaire : ${rdv.heure} - ${rdv.heureFin}</p>
+
+    <p><strong>Nouveau rendez-vous</strong></p>
+    <p>Client : ${client}</p>
+    <p>Horaire : ${heure} - ${heureFin}</p>
+`;
         
-       if (conflit) {
+    if (conflit) {
 
-    const remplacer = confirm(
-        `⚠️ CONFLIT D'HORAIRE\n\n` +
+    rendezvousEnConflit = rdv;
+    evenementEnConflit = ev;
 
-        `AGENDAMENTO ATUAL\n` +
-        `Cliente : ${rdv.client}\n` +
-        `Horário : ${rdv.heure} - ${rdv.heureFin}\n\n` +
+    conflitInfo.innerHTML = `
+        <p><strong>Agendamento atual</strong></p>
+        <p>Cliente : ${rdv.client}</p>
+        <p>Horário : ${rdv.heure} - ${rdv.heureFin}</p>
 
-        `NOVO AGENDAMENTO\n` +
-        `Cliente : ${client}\n` +
-        `Horário : ${heure} - ${heureFin}\n\n` +
+        <p><strong>Novo agendamento</strong></p>
+        <p>Cliente : ${client}</p>
+        <p>Horário : ${heure} - ${heureFin}</p>
+    `;
 
-        `OK = Remplacer l'ancien rendez-vous\n` +
-        `Annuler = Conserver l'ancien rendez-vous`
-    );
+    modalConflit.classList.remove("hidden");
 
-    if (remplacer) {
-        ev.remove();
-        atualizarContadorHoras();
-    } else {
-        return;
-    }
+    return;
 }
-    } 
     
     // Objeto do agendamento (estrutura profissional) 
    const date = jourActif.querySelector(".date").textContent; 
