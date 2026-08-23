@@ -134,6 +134,7 @@ if (conflit) {
 
     return;
 }
+    }
     
     // Objeto do agendamento (estrutura profissional) 
    const date = jourActif.querySelector(".date").textContent; 
