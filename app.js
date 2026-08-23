@@ -110,34 +110,24 @@ save.addEventListener("click", () => {
     const debutExistente = hIni * 60 + mIni; 
     const finExistente = hFim * 60 + mFim; 
     
-    // Verifica sobreposição 
-    const conflit = 
-        debutNouveau < finExistente && 
-        finNouveau > debutExistente; 
+  // Verifica sobreposição
+const conflit =
+    debutNouveau < finExistente &&
+    finNouveau > debutExistente;
 
-        conflitInfo.innerHTML = `
-    <p><strong>Agendamento actuel</strong></p>
-    <p>Client : ${rdv.client}</p>
-    <p>Horaire : ${rdv.heure} - ${rdv.heureFin}</p>
-
-    <p><strong>Nouveau rendez-vous</strong></p>
-    <p>Client : ${client}</p>
-    <p>Horaire : ${heure} - ${heureFin}</p>
-`;
-        
-    if (conflit) {
+if (conflit) {
 
     rendezvousEnConflit = rdv;
     evenementEnConflit = ev;
 
     conflitInfo.innerHTML = `
         <p><strong>Agendamento atual</strong></p>
-        <p>Cliente : ${rdv.client}</p>
-        <p>Horário : ${rdv.heure} - ${rdv.heureFin}</p>
+        <p>Cliente: ${rdv.client}</p>
+        <p>Horário: ${rdv.heure} - ${rdv.heureFin}</p>
 
         <p><strong>Novo agendamento</strong></p>
-        <p>Cliente : ${client}</p>
-        <p>Horário : ${heure} - ${heureFin}</p>
+        <p>Cliente: ${client}</p>
+        <p>Horário: ${heure} - ${heureFin}</p>
     `;
 
     modalConflit.classList.remove("hidden");
