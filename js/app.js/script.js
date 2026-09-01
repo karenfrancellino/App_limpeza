@@ -1,3 +1,5 @@
+import { initAppointments } from "./js/appointments.js";
+
 const jours = document.querySelectorAll(".jour"); 
 const modalRendezvous = document.getElementById("modal-rendezvous"); 
 const save = document.getElementById("save"); 
@@ -28,28 +30,7 @@ closeButtons.forEach(button => {
         modal.classList.add("hidden");
     });
 });
-
-let jourActif = null; 
-
-//Abrir modal ao clicar no dia 
-jours.forEach(jour => {
-    jour.addEventListener("click", () => {
-        jourActif = jour;
-
-        // Limpa campos para novo agendamento
-        document.getElementById("heure").value = "";
-        document.getElementById("duree").value = "";
-        document.getElementById("obs").value = "";
-
-        //Volta para a primeira funcionaria 
-        document.getElementById("employe").selectedIndex = 0;
-        
-        //Volta para a primeira cliente
-        document.getElementById("client").selectedIndex = 0;
-
-        modalRendezvous.classList.remove("hidden");
-    });
-}); 
+ 
 
 // Abrir modal de cliente
 btnClientNouveau.addEventListener("click", () => {
@@ -68,33 +49,6 @@ btnEmployeNouveau.addEventListener("click", () => {
     modalEmploye.classList.remove("hidden"); 
 });
 
-// Salvar evento 
-save.addEventListener("click", () => { 
-    
-    const client = document.getElementById("client").value; 
-    const heure = document.getElementById("heure").value; 
-    const duree = document.getElementById("duree").value; 
-    const obs = document.getElementById("obs").value; 
-    
-    const selectEmploye = document.getElementById("employe"); 
-    const employe = 
-    selectEmploye.options[selectEmploye.selectedIndex].text; 
-    const cor = selectEmploye.value; 
-    
-    if (!heure || !duree) return; 
-
-    // Calcula hora final do novo agendamento 
-    const [h, m] = heure.split(":").map(Number); 
-    const debutNouveau = h * 60 + m; 
-    const finNouveau = debutNouveau + Number(duree) * 60; 
-    
-    const [hFinNouveau, mFinNouveau] = heure.split(":").map(Number);
-    const finNouveauDate = new Date(2026, 0, 1, hFinNouveau, mFinNouveau);
-    finNouveauDate.setHours(finNouveauDate.getHours() + Number(duree));
-
-    const heureFin = 
-        String(finNouveauDate.getHours()).padStart(2, "0") + ":" +
-        String(finNouveauDate.getMinutes()).padStart(2, "0");
 
     // Verifica conflitos no mesmo dia 
     const eventosDoDia = jourActif.querySelectorAll(".evento"); 
@@ -321,4 +275,7 @@ function atualizarContadorHoras() {
         
         container.appendChild(linha); 
     } 
+
+initAppointments(updateHoursCounter);
+
 }
