@@ -13,8 +13,8 @@
     <h1>Planning Nettoyage</h1>
 
     <div class="actions"> 
-        <button id="btn-client-nouveau">👤 Ajouter un client</button> 
-        <button id="btn-employe-nouveau">👩 Ajouter une employée</button> 
+        <button id="add-client-button">👤 Ajouter un client</button>
+        <button id="add-employee-button">👩 Ajouter une employée</button> 
     </div>
     <div class="calendrier" id="calendrier">
         <div class="jour">
@@ -80,7 +80,7 @@
     </div>
 
 <!-- Modal client -->
-<div class="modal hidden" id="modal-client">
+<div class="modal hidden" id="client-modal">
     <div class="modal-content">
 
         <button class="close-modal" type="button">×</button>
@@ -89,25 +89,30 @@
 
         <div class="champ">
             <label>Nom</label>
-            <input type="text" id="client-nom">
+            <input type="text" id="client-name">
         </div>
 
         <div class="champ">
             <label>Téléphone</label>
-            <input type="text" id="client-tel">
+            <input type="text" id="client-phone">
+        </div>
+
+        <div class="champ">
+            <label>Email</label>
+            <input type="email" id="client-email">
         </div>
 
         <div class="champ">
             <label>Adresse</label>
-            <input type="text" id="client-adresse">
+            <input type="text" id="client-address">
         </div>
 
         <div class="champ">
             <label>Informations importantes</label>
-            <textarea id="client-info"></textarea>
+            <textarea id="client-information"></textarea>
         </div>
 
-        <button id="save-client">Enregistrer le client</button>
+        <button id="save-client-button">Enregistrer le client</button>
 
     </div>
 </div>

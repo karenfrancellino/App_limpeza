@@ -28,7 +28,15 @@ export function initAppointments(updateHoursCounter) {
             employeeSelect.options[employeeSelect.selectedIndex].text;
         const color = employeeSelect.value;
 
-        if (!startTime || !duration) return;
+        if (!startTime) {
+            alert("Veuillez sélectionner une heure de début.");
+            return;
+        }
+
+        if (!duration || Number(duration) <= 0) {
+            alert("Veuillez saisir une durée valide.");
+            return;
+        }
 
         const endTime = calculateEndTime(startTime, duration);
 
