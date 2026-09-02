@@ -118,98 +118,98 @@
 </div>
      
 <!-- Modal employée --> 
- <div class="modal hidden" id="modal-employe"> 
+ <div class="modal hidden" id="employee-modal"> 
     <div class="modal-content"> 
         
         <button class="close-modal" type="button">×</button> 
-        
+
         <h2>Nouvelle employée</h2> 
         
         <div class="champ"> 
             <label>Nom</label> 
-            <input type="text" id="employe-nom"> 
+            <input type="text" id="employee-name"> 
         </div> 
             
         <div class="champ"> 
             <label>Adresse</label> 
-            <input type="text" id="employe-adresse"> 
+            <input type="text" id="employee-address"> 
         </div> 
         
         <div class="champ"> 
             <label>Téléphone</label> 
-            <input type="text" id="employe-tel"> 
+            <input type="text" id="employee-phone"> 
         </div> 
         
         <div class="champ"> 
             <label>Email</label> 
-            <input type="email" id="employe-email"> 
+            <input type="email" id="employee-email"> 
         </div> 
         
         <div class="champ"> 
             <label>Valeur par heure (€)</label> 
-            <input type="number" id="employe-tarif" step="0.5" min="0"> 
+           <input type="number" id="employee-hourly-rate" step="0.5" min="0">
         </div> 
         
         <div class="champ"> 
             <label>Couleur du calendrier</label> 
-            <input type="color" id="employe-couleur" value="#A855F7"> 
+            <input type="color" id="employee-color" value="#A855F7"> 
         </div> 
         
         <div class="champ"> 
             <label>Disponibilité</label> 
-            <table class="dispo-table"> 
-                <tr> 
-                    <th>Jour</th> 
-                    <th>Matin</th> 
-                    <th>Après-midi</th> 
-                    <th>Soir</th> 
-                </tr> 
-                
-                <tr> 
-                    <td>Lun</td> 
-                    <td><input type="checkbox" id="lun-matin"></td> 
-                    <td><input type="checkbox" id="lun-apres"></td> 
-                    <td><input type="checkbox" id="lun-soir"></td> 
-                </tr> 
-                
-                <tr> 
-                    <td>Mar</td> 
-                    <td><input type="checkbox" id="mar-matin"></td> 
-                    <td><input type="checkbox" id="mar-apres"></td> 
-                    <td><input type="checkbox" id="mar-soir"></td> 
-                </tr> 
-                
-                <tr> 
-                    <td>Mer</td> 
-                    <td><input type="checkbox" id="mer-matin"></td> 
-                    <td><input type="checkbox" id="mer-apres"></td> 
-                    <td><input type="checkbox" id="mer-soir"></td> 
-                </tr> 
-                
-                <tr> 
-                    <td>Jeu</td> 
-                    <td><input type="checkbox" id="jeu-matin"></td> 
-                    <td><input type="checkbox" id="jeu-apres"></td> 
-                    <td><input type="checkbox" id="jeu-soir"></td> 
-                </tr> 
-                
-                <tr> 
-                    <td>Ven</td> 
-                    <td><input type="checkbox" id="ven-matin"></td> 
-                    <td><input type="checkbox" id="ven-apres"></td> 
-                    <td><input type="checkbox" id="ven-soir"></td> 
-                </tr> 
-                
-                <tr> 
-                    <td>Sam</td> 
-                    <td><input type="checkbox" id="sam-matin"></td> 
-                    <td><input type="checkbox" id="sam-apres"></td> 
-                    <td><input type="checkbox" id="sam-soir"></td> 
-                </tr> 
-            </table> 
+           <table class="dispo-table">
+    <tr>
+        <th>Jour</th>
+        <th>Matin</th>
+        <th>Après-midi</th>
+        <th>Soir</th>
+    </tr>
+
+    <tr>
+        <td>Lun</td>
+        <td><input type="checkbox" id="monday-morning"></td>
+        <td><input type="checkbox" id="monday-afternoon"></td>
+        <td><input type="checkbox" id="monday-evening"></td>
+    </tr>
+
+    <tr>
+        <td>Mar</td>
+        <td><input type="checkbox" id="tuesday-morning"></td>
+        <td><input type="checkbox" id="tuesday-afternoon"></td>
+        <td><input type="checkbox" id="tuesday-evening"></td>
+    </tr>
+
+    <tr>
+        <td>Mer</td>
+        <td><input type="checkbox" id="wednesday-morning"></td>
+        <td><input type="checkbox" id="wednesday-afternoon"></td>
+        <td><input type="checkbox" id="wednesday-evening"></td>
+    </tr>
+
+    <tr>
+        <td>Jeu</td>
+        <td><input type="checkbox" id="thursday-morning"></td>
+        <td><input type="checkbox" id="thursday-afternoon"></td>
+        <td><input type="checkbox" id="thursday-evening"></td>
+    </tr>
+
+    <tr>
+        <td>Ven</td>
+        <td><input type="checkbox" id="friday-morning"></td>
+        <td><input type="checkbox" id="friday-afternoon"></td>
+        <td><input type="checkbox" id="friday-evening"></td>
+    </tr>
+
+    <tr>
+        <td>Sam</td>
+        <td><input type="checkbox" id="saturday-morning"></td>
+        <td><input type="checkbox" id="saturday-afternoon"></td>
+        <td><input type="checkbox" id="saturday-evening"></td>
+    </tr>
+</table> 
         </div>
         
-        <button id="save-employe">Enregistrer l'employée</button> 
+        <button id="save-employee-button">Enregistrer l'employée</button> 
     </div> 
 </div>
 
