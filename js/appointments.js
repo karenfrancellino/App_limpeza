@@ -1,20 +1,17 @@
 export function initAppointments(updateHoursCounter) {
-    const days = document.querySelectorAll(".jour");
     const appointmentModal = document.getElementById("modal-rendezvous");
     const saveButton = document.getElementById("save");
 
     let activeDay = null;
 
     // Open appointment modal
-    days.forEach(day => {
-        day.addEventListener("click", () => {
-            activeDay = day;
+    function openAppointmentModal(day) {
+        activeDay = day;
 
-            clearAppointmentForm();
+        clearAppointmentForm();
 
-            appointmentModal.classList.remove("hidden");
-        });
-    });
+        appointmentModal.classList.remove("hidden");
+    }
 
     // Save appointment
     saveButton.addEventListener("click", () => {
@@ -62,8 +59,9 @@ export function initAppointments(updateHoursCounter) {
         clearAppointmentForm();
         appointmentModal.classList.add("hidden");
     });
-}
 
+    return openAppointmentModal;
+}
 // ----------------------------
 // Helpers
 // ----------------------------
