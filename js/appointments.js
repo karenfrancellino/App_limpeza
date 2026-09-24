@@ -1,3 +1,5 @@
+import { findAppointmentConflict } from "./conflicts.js";
+
 export function initAppointments(updateHoursCounter) {
     const appointmentModal = document.getElementById("modal-rendezvous");
     const saveButton = document.getElementById("save");
@@ -49,6 +51,16 @@ export function initAppointments(updateHoursCounter) {
             color,
             notes
         };
+
+        const conflict = findAppointmentConflict(
+            activeDay,
+            appointment
+        );
+
+        if (conflict) {
+            alert("Cette employée a déjà un rendez-vous à cette heure.");
+            return;
+        }
 
         createAppointmentCard(
             activeDay,
