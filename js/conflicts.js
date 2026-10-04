@@ -1,7 +1,11 @@
-export function findAppointmentConflict(day, newAppointment) {
+export function findAppointmentConflict(day, newAppointment, ignoredCard = null) {
     const existingAppointments = day.querySelectorAll(".evento");
 
     for (const appointmentElement of existingAppointments) {
+        if (appointmentElement === ignoredCard) {
+            continue;
+        }
+
         const existingAppointment = JSON.parse(
             appointmentElement.dataset.appointment
         );
@@ -14,11 +18,9 @@ export function findAppointmentConflict(day, newAppointment) {
 
         const newStart = timeToMinutes(newAppointment.startTime);
         const newEnd = timeToMinutes(newAppointment.endTime);
-        const travelTime = 30;
         const hasConflict =
-            newStart < existingEnd + travelTime &&
-            newEnd + travelTime > existingStart;
-
+            newStart < existingEnd &&
+            newEnd > existingStart;
         if (hasConflict) {
             return appointmentElement;
         }

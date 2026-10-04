@@ -3,8 +3,20 @@ import { findAppointmentConflict } from "./conflicts.js";
 export function initAppointments(updateHoursCounter) {
     const appointmentModal = document.getElementById("modal-rendezvous");
     const saveButton = document.getElementById("save");
+    const conflictModal = document.getElementById("modal-conflit");
+    const keepButton = document.getElementById("conflit-conserver");
+
+    keepButton.addEventListener("click", () => {
+        conflictModal.classList.add("hidden");
+        appointmentModal.classList.add("hidden");
+        clearAppointmentForm();
+    });
 
     let activeDay = null;
+    let pendingAppointment = null;
+    let conflictingCard = null;
+    let editingCard = null;
+    let newCardDuringEdit = null;
 
     // Open appointment modal
     function openAppointmentModal(day) {
@@ -54,11 +66,44 @@ export function initAppointments(updateHoursCounter) {
 
         const conflict = findAppointmentConflict(
             activeDay,
-            appointment
+            appointment,
+            editingCard
         );
 
+        if (editingCard) {
+            if (conflict) {
+                alert("Modifiez l'ancien rendez-vous pour éviter le conflit.");
+                return;
+            }
+
+            editingCard.remove();
+            editingCard = null;
+            newCardDuringEdit = null;
+
+            createAppointmentCard(
+                activeDay,
+                appointment,
+                updateHoursCounter
+            );
+
+            clearAppointmentForm();
+            appointmentModal.classList.add("hidden");
+            return;
+        }
+
         if (conflict) {
-            alert("Cette employée a déjà un rendez-vous à cette heure.");
+            const conflictInfo = document.getElementById("conflit-info");
+            const oldAppointment = JSON.parse(conflict.dataset.appointment);
+
+            pendingAppointment = appointment;
+            conflictingCard = conflict;
+
+            conflictInfo.textContent =
+                `${oldAppointment.employee} a déjà un rendez-vous avec ` +
+                `${oldAppointment.client} de ${oldAppointment.startTime} ` +
+                `à ${oldAppointment.endTime}.`;
+
+            conflictModal.classList.remove("hidden");
             return;
         }
 
@@ -71,6 +116,82 @@ export function initAppointments(updateHoursCounter) {
         clearAppointmentForm();
         appointmentModal.classList.add("hidden");
     });
+
+    document.getElementById("conflit-remplacer")
+        .addEventListener("click", () => {
+            if (!pendingAppointment || !conflictingCard) return;
+
+            conflictingCard.remove();
+
+            createAppointmentCard(
+                activeDay,
+                pendingAppointment,
+                updateHoursCounter
+            );
+
+            conflictModal.classList.add("hidden");
+            appointmentModal.classList.add("hidden");
+            clearAppointmentForm();
+
+            pendingAppointment = null;
+            conflictingCard = null;
+        });
+
+    document.getElementById("conflit-gerer")
+        .addEventListener("click", () => {
+            if (!pendingAppointment || !conflictingCard) return;
+
+            const anotherConflict = findAppointmentConflict(
+                activeDay,
+                pendingAppointment,
+                conflictingCard
+            );
+
+            if (anotherConflict) {
+                alert(
+                    "Ce rendez-vous entre en conflit avec plusieurs rendez-vous. " +
+                    "Modifiez d'abord les anciens rendez-vous."
+                );
+                return;
+            }
+
+            const oldCard = conflictingCard;
+            const oldAppointment = JSON.parse(oldCard.dataset.appointment);
+
+            newCardDuringEdit = createAppointmentCard(
+                activeDay,
+                pendingAppointment,
+                updateHoursCounter
+            );
+
+            editingCard = oldCard;
+            pendingAppointment = null;
+            conflictingCard = null;
+
+            conflictModal.classList.add("hidden");
+            clearAppointmentForm();
+
+            document.getElementById("client").value = oldAppointment.client;
+            document.getElementById("heure").value = oldAppointment.startTime;
+            document.getElementById("duree").value = oldAppointment.duration;
+            document.getElementById("employe").value = oldAppointment.color;
+            document.getElementById("obs").value = oldAppointment.notes;
+
+            appointmentModal.classList.remove("hidden");
+        });
+
+    appointmentModal.querySelector(".close-modal")
+        .addEventListener("click", () => {
+            if (!editingCard) return;
+
+            newCardDuringEdit.remove();
+            updateHoursCounter();
+
+            newCardDuringEdit = null;
+            editingCard = null;
+            clearAppointmentForm();
+        });
+
 
     return openAppointmentModal;
 }
@@ -141,6 +262,9 @@ function createAppointmentCard(day, appointment, updateHoursCounter) {
     day.appendChild(eventCard);
 
     updateHoursCounter();
+
+    return eventCard;
+
 }
 
 function openGoogleCalendar(appointment) {
